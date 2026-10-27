@@ -1,6 +1,6 @@
 # EchoVault 🗝️ — Preserving Living Memories with Air-Gapped, Grounded Open-Source AI
 
-![EchoVault Cover Banner](frontend/public/cover.jpg)
+![EchoVault Cover Banner](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/cover.jpg)
 
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26)*
 
@@ -35,22 +35,22 @@ In popular culture, the "ghost in the machine" often evokes a fear of synthetic 
 
 | Editorial Hero & Challenge Track | The Preservation Crisis Analysis |
 | :---: | :---: |
-| ![EchoVault Editorial Hero](frontend/public/screenshot/1.png) | ![The Preservation Crisis](frontend/public/screenshot/2.png) |
+| ![EchoVault Editorial Hero](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/1.png) | ![The Preservation Crisis](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/2.png) |
 | *Editorial landing page built for the Hacktoberfest Ghost in the Machine challenge.* | *Systematic analysis of privacy threats, AI hallucinations, and format drift.* |
 
 | Archive Overview & System Diagnostics | Grounded Conversational RAG |
 | :---: | :---: |
-| ![Archive Overview Dashboard](frontend/public/screenshot/4.png) | ![Conversational AI Search](frontend/public/screenshot/7.png) |
+| ![Archive Overview Dashboard](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/4.png) | ![Conversational AI Search](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/7.png) |
 | *Air-gapped dashboard tracking 6 indexed memories, active local LLM (`llama3.2:3b`), and SQLite storage.* | *Conversational retrieval strictly citing exact source passages with confidence metrics.* |
 
 | Chronological Timeline & Historical Conflict Engine | Remembrance Room Sanctuary |
 | :---: | :---: |
-| ![Chronological Timeline](frontend/public/screenshot/8.png) | ![Remembrance Room](frontend/public/screenshot/10.png) |
+| ![Chronological Timeline](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/8.png) | ![Remembrance Room](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/10.png) |
 | *Visual timeline flagging historical discrepancies (Parish ledger vs Uncle Thomas's journal).* | *Sanctuary honoring departed ancestors with authentic reflections, rejecting voice deepfakes.* |
 
 | Open-Weight Model Sizing & Settings | Synthetic Archival Demo Sandbox |
 | :---: | :---: |
-| ![Vault Settings](frontend/public/screenshot/11.png) | ![Synthetic Demo Sandbox](frontend/public/screenshot/12.png) |
+| ![Vault Settings](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/11.png) | ![Synthetic Demo Sandbox](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/screenshot/12.png) |
 | *Direct control over local Ollama inference URL, model selection, and one-click ZIP export.* | *Guided 3-step sandbox allowing instant evaluation with zero private data upload.* |
 
 ---
