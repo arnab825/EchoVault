@@ -47,7 +47,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -71,7 +71,7 @@ body {
   background-color: #12151c;
   border: 1px solid rgba(212, 175, 55, 0.12);
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .archival-paper-card:hover {
@@ -82,12 +82,12 @@ body {
 
 /* Smooth Interactive Glassmorphism */
 .glass-panel {
-  background: rgba(16, 19, 25, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(16, 19, 25, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(212, 175, 55, 0.15);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .glass-panel:hover {
@@ -109,18 +109,16 @@ body {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
   }
 }
 
 @keyframes pulse-glow {
   0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
+    opacity: 0.35;
   }
   50% {
-    opacity: 0.8;
-    transform: scale(1.05);
+    opacity: 0.75;
   }
 }
 
@@ -151,7 +149,7 @@ body {
 @keyframes fade-slide-up {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(8px);
   }
   100% {
     opacity: 1;
@@ -174,33 +172,31 @@ body {
 }
 
 .page-transition {
-  animation: page-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: opacity, transform;
+  animation: page-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-up {
-  animation: fade-slide-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: opacity, transform;
+  animation: fade-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-delay-1 {
-  animation-delay: 90ms;
+  animation-delay: 50ms;
 }
 
 .animate-delay-2 {
-  animation-delay: 180ms;
+  animation-delay: 100ms;
 }
 
 .animate-delay-3 {
-  animation-delay: 270ms;
+  animation-delay: 150ms;
 }
 
 .animate-delay-4 {
-  animation-delay: 360ms;
+  animation-delay: 200ms;
 }
 
 .animate-delay-5 {
-  animation-delay: 450ms;
+  animation-delay: 250ms;
 }
 
 .animate-float {

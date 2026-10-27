@@ -25,13 +25,13 @@ export default function LandingPage() {
         {/* HERO SECTION */}
         <section className="relative pt-20 pb-28 md:pt-32 md:pb-36 overflow-hidden">
           {/* Subtle Ambient Glow with Pulsing Breathing Aura */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-87.5 bg-gold-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-87.5 rounded-full pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.12)_0%,transparent_70%)] animate-pulse-glow" />
 
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             {/* Tagline Badge with Gentle Float Animation */}
             <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-gold-500/35 bg-vault-900/90 text-gold-400 text-xs tracking-wider uppercase font-mono mb-8 shadow-sm backdrop-blur animate-float hover:border-gold-400 transition-colors cursor-default">
               <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping" />
-              <span>Hacktoberfest 2026 &bull; Ghost in the Machine</span>
+              <span>Ghost in the Machine</span>
             </div>
 
             {/* Cinematic Editorial Headline */}

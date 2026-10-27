@@ -28,50 +28,72 @@ export function ArchivalHeroMedia() {
 
     let animationFrameId: number;
     let time = 0;
+    let lastFrame = 0;
+    let isVisible = true;
+
+    // Pause canvas execution when scrolled out of view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && isPlaying) {
+          lastFrame = performance.now();
+          animationFrameId = requestAnimationFrame(render);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const particles: Array<{ x: number; y: number; size: number; speed: number; opacity: number }> = [];
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 30; i++) {
       particles.push({
         x: Math.random() * 960,
         y: Math.random() * 540,
-        size: Math.random() * 2 + 0.8,
-        speed: Math.random() * 0.5 + 0.15,
-        opacity: Math.random() * 0.5 + 0.2,
+        size: Math.random() * 2 + 1,
+        speed: Math.random() * 0.4 + 0.15,
+        opacity: Math.random() * 0.4 + 0.2,
       });
     }
 
-    const render = () => {
-      time += 0.02;
+    const render = (now: number) => {
+      if (!isVisible || !isPlaying) return;
+
+      // Throttle to ~30 FPS for silky-smooth lightweight cinematic projection without CPU/GPU stutter
+      if (now - lastFrame < 32) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      lastFrame = now;
+      time += 0.03;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Atmospheric projector dust / grain particles
-      particles.forEach((p) => {
+      // Fast, lightweight atmospheric dust specks
+      ctx.fillStyle = "rgba(246, 244, 238, 0.45)";
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         p.y -= p.speed;
         if (p.y < 0) p.y = canvas.height;
-        ctx.fillStyle = `rgba(246, 244, 238, ${p.opacity * (0.7 + Math.sin(time * 4 + p.x) * 0.3)})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
 
-      // Subtle projector flicker scanlines
-      ctx.fillStyle = `rgba(212, 175, 55, ${0.015 + Math.random() * 0.02})`;
+      // Subtle projector flicker tint
+      ctx.fillStyle = "rgba(212, 175, 55, 0.02)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      if (isPlaying) {
-        animationFrameId = requestAnimationFrame(render);
-      }
+      animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, [isPlaying, activeTab]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto rounded-xl border border-vault-750 bg-vault-900/90 shadow-2xl overflow-hidden backdrop-blur">
+    <div className="w-full max-w-5xl mx-auto rounded-xl border border-vault-750 bg-vault-900 shadow-2xl overflow-hidden">
       {/* Window Title Bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-vault-800 bg-vault-950/80">
         <div className="flex items-center space-x-2">
@@ -120,14 +142,14 @@ export function ArchivalHeroMedia() {
             ref={canvasRef}
             width={960}
             height={540}
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-screen"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-60"
           />
 
           {/* CINEMATIC SEPIA VIGNETTE */}
           <div className="absolute inset-0 bg-linear-to-t from-vault-950 via-vault-950/20 to-transparent pointer-events-none" />
 
           {/* Photo Switcher Pill (Desktop & Mobile) */}
-          <div className="absolute top-3 right-3 flex items-center space-x-1.5 p-1 rounded-md bg-vault-950/90 border border-vault-700 backdrop-blur z-20">
+          <div className="absolute top-3 right-3 flex items-center space-x-1.5 p-1 rounded-md bg-vault-950/95 border border-vault-700 z-20">
             <button
               onClick={() => setMobilePhoto("/hero_archive.jpg")}
               className={`px-2.5 py-1 rounded text-[11px] font-mono transition-colors ${
