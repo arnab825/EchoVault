@@ -1,6 +1,6 @@
 # EchoVault 🗝️ — Preserving Living Memories with Air-Gapped, Grounded Open-Source AI
 
-![EchoVault Cover Banner](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/cover.jpg)
+![EchoVault Cover Banner](https://raw.githubusercontent.com/arnab825/EchoVault/main/frontend/public/dev_cover_safe.jpg)
 
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26)*
 
@@ -27,9 +27,19 @@ In popular culture, the "ghost in the machine" often evokes a fear of synthetic 
 
 ## Demo
 
-- 🌐 **Live Repository:** [github.com/arnab825/EchoVault](https://github.com/arnab825/EchoVault)
-- 🧪 **Interactive Synthetic Demo Sandbox:** EchoVault includes a built-in sandbox at `/demo` loaded with realistic fictional historical records (a 1952 lantern walk, a 1944 wartime letter, and conflicting 1923/1925 clocktower bell repair logs) so anyone can test the RAG grounding and uncertainty engine without uploading personal files.
-- 📚 **In-App Interactive Documentation:** A full architectural manual and live REST API explorer built right into `/docs`.
+EchoVault is intentionally designed as an **air-gapped, local-first system** that runs 100% on your local hardware to guarantee privacy and family data sovereignty. Because it protects sensitive memories without sending them to third-party cloud servers, there is no centralized commercial deployment by design.
+
+Instead, anyone can reproduce and test the entire platform in seconds:
+- 🌐 **Open-Source Repository:** [github.com/arnab825/EchoVault](https://github.com/arnab825/EchoVault)
+- ⚡ **1-Command Local Launch via Podman:**
+  ```bash
+  git clone https://github.com/arnab825/EchoVault.git
+  cd EchoVault
+  podman compose up --build -d
+  ```
+  *(Then visit `http://localhost:3000`)*
+- 🧪 **Interactive Synthetic Demo Sandbox:** EchoVault includes a built-in sandbox at `/demo` pre-loaded with realistic, fictional historical records (a 1952 lantern walk, a 1944 wartime letter, and conflicting 1923/1925 clocktower bell repair logs). Judges and users can test the conversational RAG grounding, citations, and uncertainty engine without uploading any personal files.
+- 📚 **In-App Interactive Documentation Portal:** A full architectural manual and live REST API explorer built right into `/docs`.
 
 ### Visual Walkthrough of EchoVault
 
