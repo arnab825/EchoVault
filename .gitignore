@@ -23,7 +23,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Python packaging lib (whitelisting frontend/lib)
+!frontend/lib/
 lib64/
 parts/
 sdist/
