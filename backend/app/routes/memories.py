@@ -37,8 +37,8 @@ def list_memories(
     q: Optional[str] = None,
     source_type: Optional[SourceType] = None,
     tag: Optional[str] = None,
-    sort_by: str = Query("created_at", regex="^(created_at|event_date|title)$"),
-    sort_order: str = Query("desc", regex="^(asc|desc)$"),
+    sort_by: str = Query("created_at", pattern="^(created_at|event_date|title)$"),
+    sort_order: str = Query("desc", pattern="^(asc|desc)$"),
     limit: int = Query(50, ge=1, le=100),
     offset: int = Query(0, ge=0)
 ):

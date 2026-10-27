@@ -1,0 +1,33 @@
+# Ignore build artifacts and local dependencies for fast container builds
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+.pytest_cache/
+backend/.pytest_cache/
+
+# Local data and logs
+backend/data/uploads/*
+!backend/data/uploads/.gitkeep
+backend/data/echovault.db
+backend/data/vector_index.json
+backend/data/exports/*
+!backend/data/exports/.gitkeep
+*.log
+
+# Git & IDE
+.git
+.github
+.idea
+.vscode
