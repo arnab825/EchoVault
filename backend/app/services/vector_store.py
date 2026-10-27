@@ -1,3 +1,4 @@
+import hashlib
 import json
 import math
 import re
@@ -49,13 +50,13 @@ class LocalVectorStore:
                 # Fallback to local deterministic embedding
                 pass
 
-        # Offline deterministic vectorizer (384-dimensional dense bag-of-words/character n-grams)
+        # Offline deterministic vectorizer (1024-dimensional dense bag-of-words/character n-grams)
         return self._compute_fallback_embedding(text)
 
-    def _compute_fallback_embedding(self, text: str, dim: int = 384) -> List[float]:
+    def _compute_fallback_embedding(self, text: str, dim: int = 1024) -> List[float]:
         """
         Generates a normalized, deterministic dense embedding using subword tokens and n-grams.
-        Guarantees that semantically similar words and exact matches cluster together.
+        Uses stable MD5 hashing across processes to ensure reproducible embeddings.
         """
         vec = np.zeros(dim, dtype=np.float32)
         words = re.findall(r'\b\w+\b', text.lower())
@@ -64,15 +65,16 @@ class LocalVectorStore:
             return vec.tolist()
 
         for word in words:
-            # Word level hashing
-            h_word = abs(hash(word)) % dim
-            vec[h_word] += 1.0
+            # Stable MD5 hash
+            h_word = int(hashlib.md5(word.encode("utf-8")).hexdigest(), 16) % dim
+            weight = 2.0 if len(word) >= 4 else 1.0
+            vec[h_word] += weight
             
             # Character trigrams for morphological and stem similarity
             for i in range(len(word) - 2):
                 tri = word[i:i+3]
-                h_tri = abs(hash(tri)) % dim
-                vec[h_tri] += 0.4
+                h_tri = int(hashlib.md5(tri.encode("utf-8")).hexdigest(), 16) % dim
+                vec[h_tri] += 0.3
 
         # Normalize L2
         norm = np.linalg.norm(vec)
@@ -159,7 +161,17 @@ class LocalVectorStore:
             if doc_norm == 0:
                 doc_norm = 1.0
 
-            similarity = float(np.dot(q_slice, doc_emb) / (query_norm * doc_norm))
+            cosine_sim = float(np.dot(q_slice, doc_emb) / (query_norm * doc_norm))
+
+            # Lexical term overlap boost for exact query terms
+            q_terms = [w for w in re.findall(r'\b[a-zA-Z]{3,}\b', query.lower())]
+            if q_terms:
+                doc_text = (data.get("passage_text", "") + " " + data.get("memory_title", "")).lower()
+                matches = sum(1 for t in q_terms if t in doc_text)
+                lexical_ratio = matches / len(q_terms)
+                final_score = 0.6 * cosine_sim + 0.4 * lexical_ratio
+            else:
+                final_score = cosine_sim
 
             results.append({
                 "passage_id": pid,
@@ -169,7 +181,7 @@ class LocalVectorStore:
                 "event_date": data.get("event_date"),
                 "date_precision": data.get("date_precision", "exact"),
                 "passage_text": data["passage_text"],
-                "similarity_score": round(similarity, 4)
+                "similarity_score": round(final_score, 4)
             })
 
         # Sort descending by similarity

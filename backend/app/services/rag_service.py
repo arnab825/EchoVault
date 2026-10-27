@@ -50,7 +50,7 @@ def deterministic_grounded_fallback(
     Fallback deterministic synthesizer when Ollama is offline or not yet downloaded.
     Produces accurate, evidence-backed answers with bracketed citations [1], [2].
     """
-    if not passages or passages[0]["similarity_score"] < 0.05:
+    if not passages or passages[0]["similarity_score"] < 0.25:
         return (
             "The current archive does not contain sufficient verified evidence to answer this question. "
             "Please add relevant letters, photographs, or memoirs to your vault.",
@@ -100,9 +100,15 @@ async def answer_memory_query(
         "describe", "know", "think", "said", "detail", "details", "information", "story",
         "event", "happened", "people", "person", "anyone", "anything", "everything", "please",
         "could", "would", "should", "might", "must", "will", "can", "much", "many", "like",
-        "find", "history", "records", "record", "memories", "memory", "archive"
+        "find", "history", "records", "record", "memories", "memory", "archive",
+        "great", "grandfather", "grandmother", "father", "mother", "uncle", "aunt",
+        "brother", "sister", "cousin", "family", "ancestor", "ancestors", "relative", "relatives",
+        "grandpa", "grandma", "born", "died", "years", "year", "lived", "living"
     }
     query_words = [w for w in re.findall(r'\b[a-zA-Z]{4,}\b', query.lower()) if w not in STOPWORDS]
+    if not query_words:
+        query_words = [w for w in re.findall(r'\b[a-zA-Z]{4,}\b', query.lower())]
+
     if query_words:
         matched_words = sum(
             1 for w in query_words

@@ -31,7 +31,7 @@ def test_unsupported_question_graceful_uncertainty(client):
     chat_res = client.post("/api/chat", json={"query": "Did great-grandfather own a red helicopter or fly a spaceship?"})
     assert chat_res.status_code == 200
     chat_data = chat_res.json()
-    assert chat_data["has_sufficient_evidence"] is False, f"CHAT_DATA: {chat_data}"
+    assert chat_data["has_sufficient_evidence"] is False
     assert chat_data["evidence_status"] == "insufficient"
     assert "not contain enough" in chat_data["answer"].lower() or "insufficient" in chat_data["answer"].lower()
 
