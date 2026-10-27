@@ -10,6 +10,8 @@
 [![Test Suite](https://img.shields.io/badge/Tests-11%2F11%20Passed-success)](docs/TEST_RESULTS.md)
 [![Zero Telemetry](https://img.shields.io/badge/Telemetry-Zero%20%7C%20Air--Gapped-emerald)](docs/PRIVACY.md)
 
+![EchoVault Hero Banner](frontend/public/cover.jpg)
+
 ---
 
 ## 📖 Executive Summary & Mission
