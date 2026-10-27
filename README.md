@@ -81,20 +81,20 @@ EchoVault follows an air-gapped three-tier local architecture ensuring strict is
 
 ```mermaid
 graph TD
-    User([User Browser]) <-->|HTTP / Next.js 14| Frontend[Next.js App Router (Port 3000)]
-    Frontend <-->|REST API / JSON| Backend[FastAPI Application Server (Port 8000)]
+    User(["User Browser"]) <-->|HTTP / Next.js 14| Frontend["Next.js App Router (Port 3000)"]
+    Frontend <-->|REST API / JSON| Backend["FastAPI Application Server (Port 8000)"]
     
-    subgraph Storage Layer (Local Filesystem)
-        Backend <--> SQLite[(SQLite 3 WAL Mode DB)]
-        Backend <--> Uploads[(Cryptographic Upload Vault /data/uploads)]
-        Backend <--> VectorStore[(Local Cosine Vector Index /data/vector_index.json)]
+    subgraph StorageLayer ["Storage Layer (Local Filesystem)"]
+        Backend <--> SQLite[("SQLite 3 WAL Mode DB")]
+        Backend <--> Uploads[("Cryptographic Upload Vault (/data/uploads)")]
+        Backend <--> VectorStore[("Local Cosine Vector Index (/data/vector_index.json)")]
     end
     
-    subgraph Local Open-Weight AI Runtime
-        Backend <-->|Inference & Embeddings (HTTP)| Ollama[Local Ollama Daemon (Port 11434)]
-        Ollama --- Llama[Llama 3.2 3B]
-        Ollama --- Qwen[Qwen 2.5 1.5B]
-        Ollama --- Nomic[Nomic Embed Text]
+    subgraph AIRuntime ["Local Open-Weight AI Runtime"]
+        Backend <-->|Inference and Embeddings| Ollama["Local Ollama Daemon (Port 11434)"]
+        Ollama --- Llama["Llama 3.2 3B"]
+        Ollama --- Qwen["Qwen 2.5 1.5B"]
+        Ollama --- Nomic["Nomic Embed Text"]
     end
 ```
 
@@ -111,10 +111,10 @@ sequenceDiagram
 
     Archivist->>FE: Upload historical letter (PDF / TXT / Image)
     FE->>API: POST /api/memories (multipart/form-data)
-    API->>API: Calculate SHA-256 & verify deduplication
+    API->>API: Calculate SHA-256 and verify deduplication
     API->>API: Decompose text into 350-char overlapping passages
-    API->>Storage: Store metadata & dense vector embeddings
-    Storage-->>FE: Memory ingested & indexed (201 Created)
+    API->>Storage: Store metadata and dense vector embeddings
+    Storage-->>FE: Memory ingested and indexed (201 Created)
 
     Archivist->>FE: Inquire: "When did Aunt Clara arrive?"
     FE->>API: POST /api/chat {"query": "..."}
@@ -123,8 +123,8 @@ sequenceDiagram
     alt Overlap < 0.35 (Insufficient Evidence)
         API-->>FE: Return graceful uncertainty statement (0 hallucinations)
     else Overlap >= 0.35 (Verified Evidence Found)
-        API->>AI: Send prompt inside strict <ARCHIVAL_EVIDENCE> XML barrier
-        AI-->>API: Synthesize response citing exact passage indices [1]
+        API->>AI: Send prompt inside strict XML evidence barrier
+        AI-->>API: Synthesize response citing exact passage indices
         API-->>FE: Return answer with verified source passage cards
     end
 ```
