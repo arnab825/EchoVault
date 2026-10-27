@@ -96,20 +96,31 @@ async def answer_memory_query(
         "did", "do", "does", "what", "when", "where", "who", "how", "was", "were", "my",
         "our", "their", "his", "her", "own", "fly", "red", "blue", "green", "white", "black",
         "some", "any", "this", "that", "there", "have", "had", "has", "been", "about", "from",
-        "into", "over", "under", "than", "more", "most"
+        "into", "over", "under", "than", "more", "most", "tell", "show", "give", "explain",
+        "describe", "know", "think", "said", "detail", "details", "information", "story",
+        "event", "happened", "people", "person", "anyone", "anything", "everything", "please",
+        "could", "would", "should", "might", "must", "will", "can", "much", "many", "like",
+        "find", "history", "records", "record", "memories", "memory", "archive"
     }
     query_words = [w for w in re.findall(r'\b[a-zA-Z]{4,}\b', query.lower()) if w not in STOPWORDS]
     if query_words:
         matched_words = sum(
             1 for w in query_words
-            if any(w in p["passage_text"].lower() or w in p["memory_title"].lower() for p in passages[:2])
+            if any(w in p["passage_text"].lower() or w in p["memory_title"].lower() for p in passages)
         )
         overlap_ratio = matched_words / len(query_words)
     else:
         overlap_ratio = 1.0
 
     # Check if we have sufficient relevant evidence
-    if not passages or passages[0]["similarity_score"] < 0.15 or overlap_ratio < 0.35:
+    top_score = passages[0]["similarity_score"] if passages else 0.0
+    is_insufficient = (
+        not passages or
+        top_score < 0.25 or
+        overlap_ratio < 0.40
+    )
+
+    if is_insufficient:
         return ChatResponse(
             conversation_id=convo_id,
             query=query,
@@ -184,9 +195,16 @@ async def answer_memory_query(
         evidence_status = ev_status
         has_sufficient = has_evidence
     else:
-        # Analyze response for negative claim
-        lower_ans = answer_text.lower()
-        if "not contain enough" in lower_ans or "insufficient" in lower_ans or "no evidence" in lower_ans:
+        # Analyze response for true refusal vs grounded citations
+        has_citations = bool(re.search(r'\[\d+\]', answer_text))
+        lower_ans = answer_text.lower().strip()
+        is_refusal = (
+            lower_ans.startswith("the current archival records do not contain") or
+            lower_ans.startswith("the current archive does not contain") or
+            lower_ans.startswith("no evidence") or
+            (not has_citations and ("not contain enough" in lower_ans or "no matching" in lower_ans))
+        )
+        if is_refusal:
             has_sufficient = False
             evidence_status = "insufficient"
         elif conflicts:

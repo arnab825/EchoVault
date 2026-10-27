@@ -8,6 +8,14 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/app',
+        destination: '/vault',
+      },
+      {
+        source: '/app/:path*',
+        destination: '/vault/:path*',
+      },
+      {
         source: '/api/:path*',
         destination: `${backendUrl}/api/:path*`,
       },
