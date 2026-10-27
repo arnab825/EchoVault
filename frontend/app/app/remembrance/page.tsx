@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { AppShell } from "@/components/AppShell";
 import {
   Sparkles,
@@ -10,9 +9,7 @@ import {
   Music,
   Plus,
   Quote,
-  ShieldCheck,
-  X,
-  FileText
+  X
 } from "lucide-react";
 import { fetchRemembrance, createRemembrance } from "@/lib/api";
 import { RemembranceItem } from "@/lib/types";
@@ -89,7 +86,7 @@ export default function RemembranceRoomPage() {
     >
       <div className="space-y-8 max-w-5xl mx-auto">
         {/* ROOM BANNER */}
-        <div className="p-6 rounded-lg bg-vault-900 border border-gold-500/20 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="p-6 rounded-lg bg-vault-900 border border-gold-500/20 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-fade-up">
           <div className="space-y-1">
             <h3 className="font-serif text-xl font-medium text-ivory-100 flex items-center space-x-2">
               <Sparkles className="w-5 h-5 text-gold-400" />
@@ -123,7 +120,7 @@ export default function RemembranceRoomPage() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-up animate-delay-1">
             {items.map((item) => (
               <div
                 key={item.id}

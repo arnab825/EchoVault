@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { KeyRound, Shield, Terminal, Heart } from "lucide-react";
+import { Shield } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function Footer() {

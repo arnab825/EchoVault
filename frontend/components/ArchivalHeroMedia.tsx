@@ -1,25 +1,18 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Play,
   Pause,
-  Volume2,
-  VolumeX,
   Sparkles,
-  Maximize2,
-  Cpu,
   ArrowRight,
-  Shield,
   Search,
   Film
 } from "lucide-react";
 
 export function ArchivalHeroMedia() {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
   const [activeTab, setActiveTab] = useState<"video" | "evidence">("video");
   const [mobilePhoto, setMobilePhoto] = useState<"/hero_archive.jpg" | "/remembrance_grandma.jpg">("/hero_archive.jpg");
   const canvasRef = useRef<HTMLCanvasElement>(null);

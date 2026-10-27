@@ -5,16 +5,12 @@ import Link from "next/link";
 import { AppShell } from "@/components/AppShell";
 import {
   Clock,
-  Calendar,
   AlertTriangle,
-  FileText,
   ArrowRight,
-  Filter,
-  CheckCircle2,
-  HelpCircle
+  Filter
 } from "lucide-react";
 import { fetchTimeline } from "@/lib/api";
-import { TimelineEvent, DatePrecision } from "@/lib/types";
+import { TimelineEvent } from "@/lib/types";
 
 export default function TimelinePage() {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
@@ -50,7 +46,7 @@ export default function TimelinePage() {
     >
       <div className="space-y-6 max-w-4xl mx-auto">
         {/* FILTER BAR */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-vault-900 p-4 rounded-lg border border-vault-800">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-vault-900 p-4 rounded-lg border border-vault-800 animate-fade-up">
           <div className="flex items-center space-x-2 text-xs font-mono text-ivory-300">
             <Filter className="w-4 h-4 text-gold-400" />
             <span>Filter by Precision:</span>
@@ -87,7 +83,7 @@ export default function TimelinePage() {
             </p>
           </div>
         ) : (
-          <div className="relative pl-6 sm:pl-8 border-l-2 border-gold-500/30 space-y-8 my-6">
+          <div className="relative pl-6 sm:pl-8 border-l-2 border-gold-500/30 space-y-8 my-6 animate-fade-up animate-delay-1">
             {filteredEvents.map((evt) => (
               <div key={evt.id} className="relative group">
                 {/* Timeline Node Point */}

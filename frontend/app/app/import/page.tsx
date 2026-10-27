@@ -9,10 +9,7 @@ import {
   FileText,
   CheckCircle,
   AlertCircle,
-  Calendar,
-  Tag,
   ArrowRight,
-  Info,
   X
 } from "lucide-react";
 import { createMemory } from "@/lib/api";
@@ -141,7 +138,7 @@ export default function ImportMemoryPage() {
         )}
 
         {/* UPLOAD FORM */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 animate-fade-up">
           {/* DRAG AND DROP ZONE */}
           <div
             onDragOver={(e) => {

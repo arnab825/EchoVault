@@ -5,22 +5,15 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppShell } from "@/components/AppShell";
 import {
-  FileText,
-  Calendar,
-  Tag,
   ArrowLeft,
   Trash2,
   Save,
   CheckCircle,
-  Clock,
-  Layers,
   Download,
-  AlertTriangle,
-  Sparkles,
-  ExternalLink
+  AlertTriangle
 } from "lucide-react";
 import { fetchMemory, updateMemory, deleteMemory } from "@/lib/api";
-import { Memory, SourceType, DatePrecision } from "@/lib/types";
+import { Memory, DatePrecision } from "@/lib/types";
 
 export default function MemoryDetailPage() {
   const params = useParams();

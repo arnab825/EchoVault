@@ -46,6 +46,10 @@
   --gold-hover: #b89528;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-ivory);
@@ -58,7 +62,8 @@ body {
 .archival-bg {
   background-color: #090b0e;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 75%),
+    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 75%),
+    radial-gradient(circle at 80% 60%, rgba(56, 189, 248, 0.03) 0%, transparent 60%),
     linear-gradient(to bottom, rgba(16, 19, 25, 0.7), rgba(9, 11, 14, 0.98));
 }
 
@@ -66,20 +71,156 @@ body {
   background-color: #12151c;
   border: 1px solid rgba(212, 175, 55, 0.12);
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .archival-paper-card:hover {
-  border-color: rgba(212, 175, 55, 0.3);
-  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.7), 0 0 20px -2px rgba(212, 175, 55, 0.15);
 }
 
-/* Gold Typography Accent */
+/* Smooth Interactive Glassmorphism */
+.glass-panel {
+  background: rgba(16, 19, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6), 0 0 15px -2px rgba(212, 175, 55, 0.2);
+}
+
+/* Gold Typography Accent with Shimmer */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #f6f4ee 0%, #e5c55c 50%, #d4af37 100%);
+  background: linear-gradient(135deg, #fdfcf9 0%, #e5c55c 40%, #d4af37 80%, #b89528 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Fluid Keyframe Animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Route Page Transition & Entrance Animations */
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.992);
+  }
+  60% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-bar-sweep {
+  0% {
+    transform: scaleX(0.2);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0.8;
+  }
+}
+
+.page-transition {
+  animation: page-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+.animate-fade-up {
+  animation: fade-slide-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+.animate-delay-1 {
+  animation-delay: 90ms;
+}
+
+.animate-delay-2 {
+  animation-delay: 180ms;
+}
+
+.animate-delay-3 {
+  animation-delay: 270ms;
+}
+
+.animate-delay-4 {
+  animation-delay: 360ms;
+}
+
+.animate-delay-5 {
+  animation-delay: 450ms;
+}
+
+.animate-float {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.shimmer-button {
+  background: linear-gradient(90deg, #d4af37 0%, #f2da84 50%, #d4af37 100%);
+  background-size: 200% 100%;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shimmer-button:hover {
+  background-position: 100% 0;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px -2px rgba(212, 175, 55, 0.6);
 }
 
 /* Custom Archival Scrollbar */
@@ -108,10 +249,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .page-transition,
+  .animate-fade-up {
+    animation-duration: 0.2s;
   }
 }

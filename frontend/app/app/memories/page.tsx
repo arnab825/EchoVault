@@ -6,12 +6,10 @@ import { AppShell } from "@/components/AppShell";
 import {
   FolderArchive,
   Search,
-  Filter,
   Grid,
   List as ListIcon,
   Trash2,
   Calendar,
-  Tag,
   ArrowRight,
   Plus,
   FileText,
@@ -81,7 +79,7 @@ export default function MemoriesLibraryPage() {
     >
       <div className="space-y-6">
         {/* HEADER CONTROLS BAR */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-vault-900 p-4 rounded-lg border border-vault-800">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-vault-900 p-4 rounded-lg border border-vault-800 animate-fade-up">
           {/* Search Box */}
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-ivory-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -165,7 +163,7 @@ export default function MemoriesLibraryPage() {
           </div>
         ) : viewMode === "grid" ? (
           /* GRID VIEW */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-fade-up animate-delay-1">
             {memories.map((mem) => (
               <div
                 key={mem.id}
@@ -214,7 +212,7 @@ export default function MemoriesLibraryPage() {
           </div>
         ) : (
           /* LIST VIEW */
-          <div className="rounded-lg border border-vault-800 bg-vault-900 divide-y divide-vault-800/80 overflow-hidden">
+          <div className="rounded-lg border border-vault-800 bg-vault-900 divide-y divide-vault-800/80 overflow-hidden animate-fade-up animate-delay-1">
             {memories.map((mem) => (
               <div key={mem.id} className="p-4 flex items-center justify-between hover:bg-vault-850/60 transition-colors">
                 <div className="flex items-center space-x-4 min-w-0 flex-1">

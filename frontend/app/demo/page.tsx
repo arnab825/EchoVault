@@ -8,13 +8,8 @@ import {
   Sparkles,
   ArrowRight,
   Database,
-  MessageSquareQuote,
-  Clock,
   Download,
-  CheckCircle,
-  FileText,
-  AlertTriangle,
-  Search
+  CheckCircle
 } from "lucide-react";
 import { seedSampleData, chatWithArchive, getExportArchiveUrl } from "@/lib/api";
 import { ChatResponse } from "@/lib/types";
@@ -60,7 +55,7 @@ export default function DemoPage() {
 
       <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-10">
         {/* HEADER */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="text-center max-w-2xl mx-auto space-y-3 animate-fade-up">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full border border-gold-500/30 bg-vault-900 text-gold-400 text-xs font-mono uppercase">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Interactive Guided Demonstration</span>
@@ -74,7 +69,7 @@ export default function DemoPage() {
         </div>
 
         {/* STEP 1: SEED SYNTHETIC DATA */}
-        <div className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-4">
+        <div className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-4 animate-fade-up animate-delay-1">
           <div className="flex items-center justify-between border-b border-vault-800 pb-3">
             <div className="flex items-center space-x-3">
               <span className="w-6 h-6 rounded-full bg-gold-500 text-vault-950 font-bold font-mono text-xs flex items-center justify-center">
@@ -110,7 +105,7 @@ export default function DemoPage() {
         </div>
 
         {/* STEP 2: TEST EVIDENCE-GROUNDED RETRIEVAL */}
-        <div className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-4">
+        <div className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-4 animate-fade-up animate-delay-2">
           <div className="flex items-center space-x-3 border-b border-vault-800 pb-3">
             <span className="w-6 h-6 rounded-full bg-gold-500 text-vault-950 font-bold font-mono text-xs flex items-center justify-center">
               2
@@ -192,7 +187,7 @@ export default function DemoPage() {
         </div>
 
         {/* STEP 3: EXPLORE FULL APPLICATION */}
-        <div className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-4">
+        <div className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-4 animate-fade-up animate-delay-3">
           <div className="flex items-center space-x-3 border-b border-vault-800 pb-3">
             <span className="w-6 h-6 rounded-full bg-gold-500 text-vault-950 font-bold font-mono text-xs flex items-center justify-center">
               3

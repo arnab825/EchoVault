@@ -7,15 +7,12 @@ import {
   FolderArchive,
   MessageSquareQuote,
   Clock,
-  Layers,
-  UploadCloud,
   Cpu,
   Database,
   ArrowRight,
   ShieldCheck,
   Sparkles,
   Calendar,
-  Tag,
   AlertTriangle,
   FileText
 } from "lucide-react";
@@ -67,9 +64,9 @@ export default function DashboardPage() {
     <AppShell pageTitle="Archive Overview" pageDescription="Preserve your private records and rediscover connected memories.">
       <div className="space-y-8">
         {/* TOP STATUS BAR */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fade-up">
           {/* Card 1: Total Memories */}
-          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between">
+          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between hover:border-gold-500/30 transition-all duration-300">
             <div>
               <p className="text-xs font-mono uppercase text-ivory-400">Total Memories</p>
               <h3 className="text-2xl font-serif font-bold text-ivory-100 mt-1">
@@ -85,7 +82,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Card 2: Timeline Events */}
-          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between">
+          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between hover:border-gold-500/30 transition-all duration-300">
             <div>
               <p className="text-xs font-mono uppercase text-ivory-400">Timeline Events</p>
               <h3 className="text-2xl font-serif font-bold text-ivory-100 mt-1">
@@ -101,7 +98,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Card 3: Inference Model */}
-          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between">
+          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between hover:border-gold-500/30 transition-all duration-300">
             <div>
               <p className="text-xs font-mono uppercase text-ivory-400">Active AI Model</p>
               <h3 className="text-base font-mono font-medium text-gold-300 mt-1 truncate max-w-35">
@@ -118,7 +115,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Card 4: Local Storage */}
-          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between">
+          <div className="p-5 rounded-lg bg-vault-900 border border-vault-800 flex items-center justify-between hover:border-gold-500/30 transition-all duration-300">
             <div>
               <p className="text-xs font-mono uppercase text-ivory-400">Local Storage</p>
               <h3 className="text-2xl font-serif font-bold text-ivory-100 mt-1">
@@ -135,7 +132,7 @@ export default function DashboardPage() {
         </div>
 
         {/* QUICK SHORTCUTS & ACTION BANNER */}
-        <div className="p-6 rounded-lg bg-linear-to-r from-vault-900 to-vault-850 border border-gold-500/20 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="p-6 rounded-lg bg-linear-to-r from-vault-900 to-vault-850 border border-gold-500/20 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4 animate-fade-up animate-delay-1">
           <div className="space-y-1">
             <h2 className="font-serif text-lg font-medium text-ivory-100 flex items-center space-x-2">
               <Sparkles className="w-4 h-4 text-gold-400" />
@@ -192,7 +189,7 @@ export default function DashboardPage() {
           </div>
         ) : (
           /* TWO COLUMN LAYOUT: RECENT MEMORIES & TIMELINE SNIPPET */
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-up animate-delay-2">
             {/* Left 2 Cols: Recent Additions */}
             <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">

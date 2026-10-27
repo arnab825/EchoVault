@@ -3,18 +3,12 @@
 import { useState, useEffect } from "react";
 import { AppShell } from "@/components/AppShell";
 import {
-  Settings,
   Cpu,
   Database,
   Download,
   Trash2,
   RefreshCw,
-  ShieldCheck,
-  AlertTriangle,
-  CheckCircle,
-  FileText,
-  KeyRound,
-  ExternalLink
+  AlertTriangle
 } from "lucide-react";
 import {
   fetchSystemStatus,
@@ -28,7 +22,6 @@ import { SystemStatus } from "@/lib/types";
 
 export default function SettingsPage() {
   const [status, setStatus] = useState<SystemStatus | null>(null);
-  const [settingsData, setSettingsData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   // Editable fields
@@ -55,7 +48,6 @@ export default function SettingsPage() {
         fetchSettings(),
       ]);
       setStatus(statusRes);
-      setSettingsData(settingsRes);
       setOllamaBaseUrl(settingsRes.ollama_base_url || "");
       setOllamaModel(settingsRes.ollama_model || "");
     } catch (e) {
@@ -123,7 +115,7 @@ export default function SettingsPage() {
     >
       <div className="space-y-8 max-w-4xl mx-auto">
         {/* RUNTIME INTEGRITY CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-fade-up">
           <div className="p-4 rounded-lg bg-vault-900 border border-vault-800 space-y-1">
             <span className="text-[10px] uppercase font-mono text-ivory-400">Database Engine</span>
             <div className="flex items-center space-x-2">
@@ -173,7 +165,7 @@ export default function SettingsPage() {
         </div>
 
         {/* MODEL CONFIGURATION */}
-        <form onSubmit={handleSaveSettings} className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-5">
+        <form onSubmit={handleSaveSettings} className="p-6 rounded-lg bg-vault-900 border border-vault-800 space-y-5 animate-fade-up animate-delay-1">
           <div className="flex items-center justify-between border-b border-vault-800 pb-3">
             <div>
               <h3 className="font-serif text-lg font-medium text-ivory-100 flex items-center space-x-2">
@@ -219,7 +211,7 @@ export default function SettingsPage() {
           <div className="pt-2 flex items-center justify-end">
             <button
               type="submit"
-              disabled={savingSettings}
+              disabled={savingSettings || loading}
               className="px-4 py-2 rounded bg-gold-500 hover:bg-gold-600 text-vault-950 font-semibold text-xs transition-all shadow-sm"
             >
               {savingSettings ? "Updating..." : "Save Model Settings"}

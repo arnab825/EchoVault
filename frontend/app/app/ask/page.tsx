@@ -7,19 +7,14 @@ import {
   MessageSquareQuote,
   Send,
   Sparkles,
-  FileText,
-  Clock,
   ArrowRight,
   AlertCircle,
-  HelpCircle,
   ShieldCheck,
-  RefreshCw,
-  ExternalLink,
   ChevronDown,
   ChevronUp
 } from "lucide-react";
 import { chatWithArchive } from "@/lib/api";
-import { ChatResponse, CitationItem } from "@/lib/types";
+import { ChatResponse } from "@/lib/types";
 
 interface MessageItem {
   id: string;
@@ -85,7 +80,7 @@ export default function ConversationalSearchPage() {
         {/* MESSAGES DISPLAY SCROLL AREA */}
         <div className="flex-1 overflow-y-auto space-y-6 pr-2 mb-4">
           {messages.length === 0 ? (
-            <div className="py-12 text-center space-y-6">
+            <div className="py-12 text-center space-y-6 animate-fade-up">
               <div className="w-12 h-12 mx-auto rounded-full bg-vault-900 border border-gold-500/30 flex items-center justify-center text-gold-400 shadow-sm">
                 <MessageSquareQuote className="w-6 h-6" />
               </div>
@@ -257,7 +252,7 @@ export default function ConversationalSearchPage() {
         </div>
 
         {/* INPUT BOX */}
-        <div className="border-t border-vault-800 pt-4 bg-vault-950">
+        <div className="border-t border-vault-800 pt-4 bg-vault-950 animate-fade-up animate-delay-1">
           <form
             onSubmit={(e) => {
               e.preventDefault();

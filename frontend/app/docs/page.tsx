@@ -9,11 +9,9 @@ import {
   Cpu,
   ShieldCheck,
   Terminal,
-  Database,
   FileCode,
   Layers,
   ArrowRight,
-  ChevronRight,
   Search,
   Copy,
   Check,
@@ -21,15 +19,8 @@ import {
   Sparkles,
   Clock,
   Heart,
-  Lock,
-  Server,
-  HardDrive,
   RefreshCw,
-  AlertCircle,
-  FileText,
-  Activity,
-  Code2,
-  Workflow
+  Code2
 } from "lucide-react";
 
 interface DocTopic {
@@ -479,7 +470,7 @@ export default function DocsPage() {
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
         {/* HEADER HERO */}
-        <div className="border-b border-vault-800 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="border-b border-vault-800 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6 animate-fade-up">
           <div className="space-y-2">
             <div className="inline-flex items-center space-x-2 text-xs font-mono text-gold-400 uppercase tracking-widest px-3 py-1 rounded-full bg-vault-900 border border-gold-500/20">
               <BookOpen className="w-3.5 h-3.5 text-gold-400" />
@@ -512,7 +503,7 @@ export default function DocsPage() {
         </div>
 
         {/* SEARCH & CATEGORY FILTER BAR */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-lg bg-vault-900/80 border border-vault-800 backdrop-blur">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-lg bg-vault-900/80 border border-vault-800 backdrop-blur animate-fade-up animate-delay-1">
           {/* Search Input */}
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-ivory-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -552,7 +543,7 @@ export default function DocsPage() {
         </div>
 
         {/* MAIN DOCUMENTATION WORKSPACE */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-up animate-delay-2">
           {/* NAVIGATION SIDEBAR (4 cols) */}
           <div className="lg:col-span-4 space-y-2">
             <div className="flex items-center justify-between px-3 pb-1">

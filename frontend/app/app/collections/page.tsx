@@ -6,10 +6,8 @@ import { AppShell } from "@/components/AppShell";
 import {
   Layers,
   Plus,
-  FolderArchive,
   ArrowRight,
   Trash2,
-  Calendar,
   X
 } from "lucide-react";
 import { fetchCollections, createCollection, deleteCollection } from "@/lib/api";
@@ -72,7 +70,7 @@ export default function CollectionsPage() {
       pageDescription="Organize letters, oral histories, and family photographs into curated remembrance binders."
     >
       <div className="space-y-6 max-w-5xl">
-        <div className="flex items-center justify-between pb-4 border-b border-vault-800">
+        <div className="flex items-center justify-between pb-4 border-b border-vault-800 animate-fade-up">
           <div>
             <h3 className="font-serif text-xl font-medium text-ivory-100">
               Curated Collections ({collections.length})
@@ -110,7 +108,7 @@ export default function CollectionsPage() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-fade-up animate-delay-1">
             {collections.map((col) => (
               <div
                 key={col.id}

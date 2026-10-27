@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { KeyRound, Menu, X, ArrowRight, ShieldCheck, Cpu, BookOpen } from "lucide-react";
+import { Menu, X, ArrowRight, ShieldCheck, Cpu, BookOpen } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function Navbar() {

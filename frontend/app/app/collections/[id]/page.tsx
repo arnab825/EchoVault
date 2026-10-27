@@ -5,12 +5,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { AppShell } from "@/components/AppShell";
 import {
-  Layers,
   ArrowLeft,
-  Calendar,
   FileText,
-  ArrowRight,
-  Plus
+  ArrowRight
 } from "lucide-react";
 import { fetchCollections, fetchMemories } from "@/lib/api";
 import { Collection, Memory } from "@/lib/types";

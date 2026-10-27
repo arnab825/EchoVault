@@ -3,13 +3,9 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
   ShieldCheck,
-  Lock,
-  Cpu,
-  Database,
   ArrowRight,
   CheckCircle,
-  AlertTriangle,
-  KeyRound
+  AlertTriangle
 } from "lucide-react";
 
 export default function PrivacyPage() {
@@ -19,8 +15,8 @@ export default function PrivacyPage() {
 
       <main className="flex-1 py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
         {/* PRIVACY HEADER */}
-        <div className="text-center space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-950/40 text-emerald-400 text-xs font-mono uppercase">
+        <div className="text-center space-y-4 animate-fade-up">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-950/40 text-emerald-400 text-xs font-mono uppercase animate-float">
             <ShieldCheck className="w-4 h-4" />
             <span>Air-Gapped & Sovereign Architecture</span>
           </div>
@@ -33,7 +29,7 @@ export default function PrivacyPage() {
         </div>
 
         {/* VERIFICATION MATRIX */}
-        <div className="rounded-lg border border-vault-800 bg-vault-900 divide-y divide-vault-800 overflow-hidden shadow-lg">
+        <div className="rounded-lg border border-vault-800 bg-vault-900 divide-y divide-vault-800 overflow-hidden shadow-lg animate-fade-up animate-delay-1">
           <div className="p-6 space-y-2">
             <div className="flex items-center space-x-2 text-emerald-400 font-medium text-base">
               <CheckCircle className="w-5 h-5 shrink-0" />
@@ -76,7 +72,7 @@ export default function PrivacyPage() {
         </div>
 
         {/* HONEST LIMITATIONS NOTICE */}
-        <div className="p-6 rounded-lg bg-vault-900/60 border border-amber-500/30 text-amber-200 text-xs space-y-3">
+        <div className="p-6 rounded-lg bg-vault-900/60 border border-amber-500/30 text-amber-200 text-xs space-y-3 animate-fade-up animate-delay-2">
           <div className="flex items-center space-x-2 font-semibold text-amber-400 text-sm">
             <AlertTriangle className="w-4 h-4 shrink-0" />
             <span>Honest Security Disclosures</span>
@@ -92,13 +88,13 @@ export default function PrivacyPage() {
         </div>
 
         {/* CTA */}
-        <div className="text-center pt-4">
+        <div className="text-center pt-4 animate-fade-up animate-delay-3">
           <Link
             href="/app"
-            className="inline-flex items-center space-x-2 px-6 py-2.5 rounded bg-gold-500 hover:bg-gold-600 text-vault-950 font-semibold text-sm shadow transition-all"
+            className="inline-flex items-center space-x-2 px-8 py-3 rounded shimmer-button text-vault-950 font-bold text-sm shadow transition-all group"
           >
             <span>Enter Your Private Vault</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </main>

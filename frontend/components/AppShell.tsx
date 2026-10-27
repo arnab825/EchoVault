@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  KeyRound,
   LayoutDashboard,
   FolderArchive,
   UploadCloud,
@@ -200,7 +199,7 @@ export function AppShell({ children, pageTitle, pageDescription }: AppShellProps
 
         {/* Page Body Viewport */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <div className="max-w-7xl mx-auto">
+          <div key={pathname} className="max-w-7xl mx-auto page-transition">
             {children}
           </div>
         </main>
